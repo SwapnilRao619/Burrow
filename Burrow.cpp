@@ -88,7 +88,7 @@ public:
 
     ~PostQuantumCrypto() {
         if (method) {
-            OQS_KEM_free(method);  // Secure cleanup of KEM method
+            OQS_KEM_free(method);  // Secure cleanup of: KEM method
             method = nullptr;
         }
     }
