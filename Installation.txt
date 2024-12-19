@@ -1,0 +1,19 @@
+# Install the dependencies
+sudo apt-get update
+sudo apt-get install cmake gcc ninja-build libssl-dev
+
+# Clone and install liboqs
+git clone https://github.com/open-quantum-safe/liboqs.git
+cd liboqs
+mkdir build && cd build
+cmake -DOQS_USE_OPENSSL=ON ..
+make
+sudo make install
+
+[UNIX SPECIFIC]
+
+# Compile the program
+g++ -o burrow Burrow.cpp -loqs -I/usr/local/include -L/usr/local/lib
+
+# Run the program
+./burrow
