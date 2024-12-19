@@ -15,7 +15,7 @@
 #include <map>
 #include <oqs/oqs.h>
 
-// Secure memory management class that implements RAII and secure cleanup
+// Secure memory management class: Implements RAII and secure cleanup
 class SecureBuffer {
 private:
     std::unique_ptr<uint8_t[]> data;
@@ -28,7 +28,7 @@ public:
         if (!data) {
             throw std::bad_alloc();
         }
-        memset(data.get(), 0, size);  // Zero-initialize to avoid leaking sensitive data
+        memset(data.get(), 0, size);  // Zero-initialize: Avoids leaking sensitive data
     }
 
     SecureBuffer(const SecureBuffer&) = delete;
@@ -43,7 +43,7 @@ public:
     SecureBuffer& operator=(SecureBuffer&& other) noexcept {
         if (this != &other) {
             if (data) {
-                OQS_MEM_cleanse(data.get(), size); // Securely erase data before reassignment
+                OQS_MEM_cleanse(data.get(), size); // Securely erase data: Before reassignment
             }
             data = std::move(other.data);
             size = other.size;
@@ -58,7 +58,7 @@ public:
 
     ~SecureBuffer() {
         if (data) {
-            OQS_MEM_cleanse(data.get(), size); // Securely erase data during destruction
+            OQS_MEM_cleanse(data.get(), size); // Securely erase data: During destruction
         }
     }
 };
@@ -344,4 +344,3 @@ int main() {
     OQS_destroy();
     return 0;
 }
-
