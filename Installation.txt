@@ -14,6 +14,8 @@ sudo make install
 
 # Compile the program
 g++ -o burrow Burrow.cpp -loqs -I/usr/local/include -L/usr/local/lib
+g++ -o burrow_functioner Burrow_Functioner.cpp
 
 # Run the program
 ./burrow
+./burrow_functioner
